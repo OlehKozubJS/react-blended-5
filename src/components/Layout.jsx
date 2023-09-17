@@ -1,7 +1,10 @@
 import { Suspense } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
+import { selectBasename } from 'redux/selectors';
 
 export const Layout = () => {
+  const basename = useSelector(selectBasename);
   return (
     <>
       <header>
@@ -15,6 +18,7 @@ export const Layout = () => {
             </li>
           </ul>
         </nav>
+        {basename && <p>Your base currency : {basename} </p>}
       </header>
       <Suspense>
         <Outlet />
